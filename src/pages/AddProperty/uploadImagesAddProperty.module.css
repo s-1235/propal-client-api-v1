@@ -1,0 +1,31 @@
+.upload::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.upload::before {
+  content: "Select Images To Upload";
+  display: inline-block;
+  background: linear-gradient(
+    90deg,
+    rgba(229, 229, 232, 1) 0%,
+    rgba(170, 177, 176, 1) 41%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  /* background: linear-gradient(top, #090979, #e3e3e3);
+  border: 1px solid #999; */
+  border-radius: 3px;
+  padding: 20px 28px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  text-shadow: 1px 1px #fff;
+  font-weight: 700;
+  font-size: 10pt;
+  border-radius: 20px 20px 20px 20px;
+}
+.upload:hover::before {
+  border-color: black;
+}
+.upload:active::before {
+  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}

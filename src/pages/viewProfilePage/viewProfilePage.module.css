@@ -1,0 +1,25 @@
+.name {
+  font-size: 2rem;
+  text-decoration: none;
+  font-family: "Cairo", sans-serif;
+  font-weight: 900;
+  margin-left: 10rem;
+  margin-top: 2rem;
+}
+.subtitle {
+  font-size: 1rem;
+  text-decoration: none;
+  font-family: "Cairo", sans-serif;
+  font-weight: 300;
+  margin-left: 20rem;
+}
+.Bio {
+  margin: 1rem 0 0 30rem;
+  text-decoration: none;
+  font-family: "Cairo", sans-serif;
+  font-weight: 400;
+}
+.Container {
+  background-color: #f1f1f1;
+  padding-bottom: 1rem;
+}

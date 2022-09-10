@@ -1,0 +1,12 @@
+.upload {
+  height: 20px;
+  width: 20px;
+}
+.upload:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+}
+.upload::-webkit-file-upload-button {
+  visibility: hidden;
+}

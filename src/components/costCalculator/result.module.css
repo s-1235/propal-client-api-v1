@@ -1,0 +1,22 @@
+.container {
+  height: 280px;
+  background-color: "#F1F1F1";
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.cost {
+  text-decoration: none;
+  font-family: "Oswald";
+  font-size: 30px;
+  color: red;
+  font-weight: 500;
+}
+.totalcost {
+  color: black;
+}
+.rs {
+  font-size: 25px;
+}
