@@ -2,19 +2,15 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import CarIcons from "./../../assets/icons/SVG/car.svg";
-import BedIcons from "./../../assets/icons/SVG/bed.svg";
-import WashroomIcons from "./../../assets/icons/SVG/washroom.svg";
-import MoneyIcon from "./../../assets/icons/SVG/money.svg";
 import MessageIcon from "@mui/icons-material/Message";
 import LikeIcon from "@mui/icons-material/Favorite";
-const bottomContainer = () => {
+const BottomContainer = (props) => {
   return (
     <Grid
-      container
-      direction="row"
-      justifyContent="space-between"
-      alignItems="flex-end"
+      display="flex"
+      flexDirection="row"
+      justifyContent="center"
+      alignItems="center"
       sx={{ height: "200px" }}
     >
       <Box
@@ -26,18 +22,27 @@ const bottomContainer = () => {
         }}
       >
         <Box>
-          <img style={{ height: "50px", width: "50px" }} src={CarIcons} />
-          <text>2</text>
+          <img
+            src="/assets/icons/SVG/car.svg"
+            style={{ height: "50px", width: "50px" }}
+          />
+          <text>{props.Garages}</text>
           <text>-Vehicles</text>
         </Box>
         <Box>
-          <img style={{ height: "50px", width: "50px" }} src={BedIcons} />
-          <text>12</text>
+          <img
+            src="/assets/icons/SVG/bed.svg"
+            style={{ height: "50px", width: "50px" }}
+          />
+          <text>{props.Bedrooms}</text>
           <text>-Bedrooms</text>
         </Box>
         <Box>
-          <img style={{ height: "50px", width: "50px" }} src={WashroomIcons} />
-          <text>5</text>
+          <img
+            style={{ height: "50px", width: "50px" }}
+            src="/assets/icons/SVG/washroom.svg"
+          />
+          <text>{props.Washrooms}</text>
           <text>-Washrooms</text>
         </Box>
       </Box>
@@ -62,7 +67,7 @@ const bottomContainer = () => {
               width: "55px",
               marginRight: "10PX",
             }}
-            src={MoneyIcon}
+            src="/assets/icons/SVG/money.svg"
           />
           <Typography
             variant="h1"
@@ -71,7 +76,7 @@ const bottomContainer = () => {
             PKR
           </Typography>
           <Typography variant="h3" sx={{ fontSize: 30, marginTop: "8px" }}>
-            1.5 lac
+            {props.Price} lac
           </Typography>
         </Box>
         <Button
@@ -106,4 +111,4 @@ const bottomContainer = () => {
     </Grid>
   );
 };
-export default bottomContainer;
+export default BottomContainer;

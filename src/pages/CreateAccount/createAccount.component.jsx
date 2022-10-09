@@ -21,7 +21,7 @@ const CreateAccount = () => {
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
-  const countRef = useRef(0);
+  // const countRef = useRef(0);
   // const sendData = (e) => {
   //   e.preventDefault();
   //   const data = {
@@ -41,9 +41,9 @@ const CreateAccount = () => {
   //   dispatch(loginAction({ email, password }));
   //   dispatch(signupAction(data));
   // };
-  useEffect(() => {
-    countRef.current = countRef.current + 1;
-  }, []);
+  // useEffect(() => {
+  //   countRef.current = countRef.current + 1;
+  // }, []);
   useEffect(() => {
     if (formIsSubmitted) {
       setMoreInfo(false);
@@ -55,9 +55,9 @@ const CreateAccount = () => {
 
   return (
     <form action="/stats" enctype="multipart/form-data" method="post">
-      <p style={{ color: "black", height: "30px", width: "30px" }}>
+      {/* <p style={{ color: "black", height: "30px", width: "30px" }}>
         {countRef.current}
-      </p>
+      </p> */}
       <Box
         display="flex"
         justifyContent="center"
@@ -72,6 +72,7 @@ const CreateAccount = () => {
             FormIsSubmitted={formIsSubmitted}
             SetFormIsSubmitted={setFormIsSubmitted}
             SetMoreInfo={showMoreInfo}
+            MoreInfo={moreInfo}
             SetFirstname={setFirstname}
             SetLastname={setLastname}
             SetProfileType={setProfileType}

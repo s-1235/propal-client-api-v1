@@ -4,7 +4,6 @@ import { DropdownContainer } from "./button.styled";
 import { Data } from "./button.styled";
 import ButtonText from "../text/buttontext";
 import Icon from "../icon/Icon";
-import downarrow from "./../../assets/icons/SVG/circle-down.svg";
 import { Datacontainer } from "./button.styled";
 const DUMMY_DATA = [
   {
@@ -73,7 +72,7 @@ function Button(props) {
             width={props.buttontext === "City" ? "190px" : "150px"}
           ></ButtonText>
           <Icon
-            source={downarrow}
+            source="./assets/icons/SVG/circle-down.svg"
             height="40.05px"
             width="40.05px"
             rotate={isshowDropdown}

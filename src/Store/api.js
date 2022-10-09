@@ -42,9 +42,7 @@ export const getMyAllProperties = async () => {
 };
 export const getPropertiesOfAUser = async (userId) => {
   try {
-    return await axios.get(
-      `http://127.0.0.1:3000/api/v1/users/${userId}/properties`
-    );
+    return await apiClient.get(`/users/${userId}/properties`);
   } catch (exception) {
     return {
       error: true,
@@ -81,7 +79,7 @@ export const getApprovedProperties = async () => {
 export const getAUserProperty = async (id) => {
   try {
     return await axios.get(
-      `http://127.0.0.1:3000/api/v1/users/properties/${id}/getthisproperty`
+      `http://127.0.0.1:3000/api/v1/properties/${id}/getthisproperty`
     );
   } catch (exception) {
     return {
@@ -145,6 +143,18 @@ export const unapproveAProperty = async (propertyId) => {
 export const approveAProperty = async (propertyId) => {
   try {
     return await apiClient.patch(`/properties/${propertyId}/approveProperty`);
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};
+export const searchProperties = async (data) => {
+  try {
+    return await apiClient.get(`/properties/searchproperties`, {
+      params: { data },
+    });
   } catch (exception) {
     return {
       error: true,
@@ -225,6 +235,16 @@ export const logout = async () => {
 export const getAllUsers = async () => {
   try {
     return await apiClient.get(`/users`);
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};
+export const getAllUsers_ = async () => {
+  try {
+    return await apiClient.get(`/users/getAllUsers`);
   } catch (exception) {
     return {
       error: true,

@@ -1,7 +1,7 @@
 import "./App.css";
 import HomePage from "./pages/homepage/homepage.component";
 // import GlobalStyle from "./styles/globalStyles";
-import ViewProfilePage from "./pages/viewProfilePage/viewProfilePage";
+import ViewProfile from "./pages/viewProfile_2/viewProfile";
 import ViewPropertyPage from "./pages/ViewProperty/ViewPropertyPage";
 import AddPropertyPage from "./pages/AddProperty/addPropertyPage";
 import AlertNotification from "./components/alertBox/alertBox.component";
@@ -26,6 +26,7 @@ import { Route, Routes } from "react-router-dom";
 // import PropertyTypeDropDown from "./components/buttons/dropDownButton/propertytypedropdown";
 // import PriceRangeDropdown from "./components/buttons/dropDownButton/pricerangedropdown";
 import CostCalculator from "./components/costCalculator/costCalculator";
+import SearchedProperties from "./pages/searchedProperties/searchedProperties";
 // import Result from "./components/costCalculator/result";
 function App() {
   const dispatch = useDispatch();
@@ -48,7 +49,11 @@ function App() {
         <Route path="/" element={<HomePage />} />
         {/* <Route path="/admin" element={<AdminLogin />} /> */}
         <Route path="/properties/:id" element={<ViewPropertyPage />} />
-        <Route path="/users/:id" element={<ViewProfilePage />} />
+        <Route path="/search" element={<SearchedProperties />} />
+        <Route
+          path="/users/:id"
+          element={<ViewProfile myProfile={false} />}
+        ></Route>
         <Route path="/add" element={<AddPropertyPage />} />
         <Route path="/costCalculator" element={<CostCalculator />} />
         <Route path="/signup" element={<CreateAccount />} />
@@ -57,7 +62,6 @@ function App() {
       {/* <GlobalStyle /> */}
       {/*  */}
       {/*  */}
-
       {/* <CostCalculator /> */}
     </>
   );

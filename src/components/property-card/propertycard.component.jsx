@@ -12,7 +12,7 @@ import {
 const PropertyCard = () => {
   return (
     <Card>
-      <Img src={require("./../../assets/img/hero_bg.jpg")} />
+      <Img src="./public/assets/img/hero_bg.jpg" />
       <Content>
         <Bar>
           <Box>

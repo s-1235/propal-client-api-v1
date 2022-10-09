@@ -1,10 +1,10 @@
-import { Card, ContentBox, Image, ImageBox } from './profilecard.styled';
+import { Card, ContentBox, Image, ImageBox } from "./profilecard.styled";
 
 const ProfileCard = () => {
   return (
     <Card>
       <ImageBox>
-        <Image src={require('./../../assets/img/hero_bg.jpg')} />
+        <Image src="./assets/img/hero_bg.jpg" />
       </ImageBox>
 
       <ContentBox>

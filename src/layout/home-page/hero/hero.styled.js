@@ -1,8 +1,7 @@
-import styled from 'styled-components';
-import bg from './../../../assets/img/hero_bg.jpg';
+import styled from "styled-components";
 
 export const HeroContainer = styled.div`
-  background-image: url(${bg});
+  background-image: url("./assets/img/hero_bg.jpg");
   min-height: 100vh;
   background-repeat: no-repeat;
   background-size: cover;

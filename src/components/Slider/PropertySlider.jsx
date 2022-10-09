@@ -2,7 +2,8 @@ import { Box } from "@mui/system";
 import { MdKeyboardArrowUp, MdKeyboardArrowDown } from "react-icons/md";
 import "./PropertySlider.css";
 import PropertyCard from "../PropertyCard/propertyCard.jsx";
-const PropertySlider = () => {
+
+const PropertySlider = (props) => {
   const slideTop = () => {
     var slider = document.getElementById("PropertySlider");
     slider.scrollTop = slider.scrollTop + 500;
@@ -23,7 +24,6 @@ const PropertySlider = () => {
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: "#D9D9D9",
-        marginTop: 5,
       }}
     >
       <MdKeyboardArrowUp
@@ -32,13 +32,22 @@ const PropertySlider = () => {
         onClick={slideTop}
       />
       <div id="PropertySlider">
-        <PropertyCard />
-        <PropertyCard />
-        <PropertyCard />
-        <PropertyCard />
-        <PropertyCard />
-        <PropertyCard />
-        <PropertyCard />
+        {props.Properties?.map((property) => {
+          return (
+            <PropertyCard
+              Id={property?.id}
+              Description={property?.description}
+              Images={property?.images}
+              Name={property?.name}
+              City={property?.city}
+              Area={property?.area}
+              Washrooms={property?.noofwashrooms}
+              Garages={property?.noofgarages}
+              Bedrooms={property?.noofbedrooms}
+              PostedBy={property?.postedBy}
+            />
+          );
+        })}
       </div>
       <MdKeyboardArrowDown
         size={60}

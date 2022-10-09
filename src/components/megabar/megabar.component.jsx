@@ -1,4 +1,3 @@
-import searchicon from "./../../assets/icons/SVG/search.svg";
 import { useState } from "react";
 import Button from "../buttons/button.component";
 import ButtonText from "../text/buttontext";
@@ -93,7 +92,11 @@ const MegaBar = () => {
           onClick={SubmitFormHanlder}
           active={true}
         >
-          <Icon source={searchicon} height="67.05px" width="67.05px"></Icon>
+          <Icon
+            source="./assets/icons/SVG/search.svg"
+            height="67.05px"
+            width="67.05px"
+          ></Icon>
         </Button>
       </Container>
     </div>

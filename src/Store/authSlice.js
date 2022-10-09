@@ -105,7 +105,9 @@ export const signupAction = createAsyncThunk(
       // console.log(response);
       const userDetails = response.data?.data;
       if (!userDetails) {
-        thunkApi.dispatch(alertActions.openAlertBox("Error"));
+        thunkApi.dispatch(
+          alertActions.openAlertBox(response.exception?.response?.data?.message)
+        );
       } else {
         thunkApi.dispatch(alertActions.openAlertBox("Account Created"));
         thunkApi.getState((state) => state.isAuthenticated === true);

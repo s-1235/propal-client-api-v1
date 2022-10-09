@@ -21,7 +21,6 @@
   opacity: 1;
 }
 #PropertySlider {
-  width: 120%;
   height: 840px;
   white-space: nowrap;
   overflow-y: scroll;

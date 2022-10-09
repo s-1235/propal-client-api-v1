@@ -9,9 +9,9 @@ import WashroomIcon from "@mui/icons-material/Bathtub";
 import BedIcon from "@mui/icons-material/Bed";
 import Badge from "@mui/material/Badge";
 import Divider from "@mui/material/Divider";
-import Image from "./../../assets/img/garlic.jpg";
-import { display } from "@mui/system";
-const PropertyCard = () => {
+import { useNavigate } from "react-router-dom";
+const PropertyCard = (props) => {
+  const navigate = useNavigate();
   return (
     <Card
       sx={{
@@ -27,7 +27,7 @@ const PropertyCard = () => {
       <CardMedia
         component="img"
         sx={{ width: "300px", borderRadius: "20px 20px 20px 20px" }}
-        image={Image}
+        image="./assets/img/garlic.jpg"
         alt="Live from space album cover"
       />
       <CardContent
@@ -46,7 +46,7 @@ const PropertyCard = () => {
             alignItems: "center",
           }}
         >
-          <Badge badgeContent={4} color="success">
+          <Badge badgeContent={props.Garages} color="success">
             <CarIcon sx={{ height: "40px", width: "40px" }} />
           </Badge>
           <Divider
@@ -54,7 +54,7 @@ const PropertyCard = () => {
             flexItem
             sx={{ border: "1px solid black", height: "35px", marginLeft: 2 }}
           />
-          <Badge badgeContent={4} color="success">
+          <Badge badgeContent={props.Bedrooms} color="success">
             <BedIcon sx={{ height: "40px", width: "40px", marginLeft: 2 }} />
           </Badge>
           <Divider
@@ -62,7 +62,7 @@ const PropertyCard = () => {
             flexItem
             sx={{ border: "1px solid black", height: "35px", marginLeft: 2 }}
           />
-          <Badge badgeContent={4} color="success">
+          <Badge badgeContent={props.Washrooms} color="success">
             <WashroomIcon
               sx={{
                 height: "40px",
@@ -74,10 +74,10 @@ const PropertyCard = () => {
           </Badge>
         </Box>
         <Typography variant="h5" sx={{ fontWeight: "600", fontSize: "22px" }}>
-          84 Sqft Apartment For Rent
+          {props.Name}
         </Typography>
         <Typography variant="subtitle2" marginTop="5px">
-          DHA Phase 2, Islamabad
+          {props.Area}, {props.City}
         </Typography>
         <Typography
           sx={{
@@ -86,11 +86,17 @@ const PropertyCard = () => {
             fontWeidht: "600",
             marginTop: 1,
             whiteSpace: "break-spaces",
+            textOverflow: "ellipsis",
+            overflow: "hidden",
+            display: "inline-block",
+            WebkitLineClamp: 3,
           }}
+          // sx={{
+          //   width: "200px",
+          //   height: "50px",
+          // }}
         >
-          804 Sqft Apartment for Rent in DHA Phase 2, adjacent to Zaraj Housing
-          Society and Humak Town, Islamabad. It comprises of 2 bedrooms, 2
-          bathrooms, TV lounge, kitchens, and parking area.
+          {props.Description}
         </Typography>
         <IconButton
           varinat="contained"
@@ -106,6 +112,9 @@ const PropertyCard = () => {
             marginLeft: 55,
             color: "white",
             marginTop: 2,
+          }}
+          onClick={() => {
+            navigate(`/users/${props.PostedBy.id}`);
           }}
         >
           Contact

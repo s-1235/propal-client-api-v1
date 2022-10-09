@@ -1,6 +1,4 @@
 import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import LocationIcon from "./../../assets/icons/PNG/Location_Icon.png";
 import { createTheme, ThemeProvider, Typography } from "@mui/material";
 const theme = createTheme({
   components: {
@@ -30,7 +28,7 @@ const theme = createTheme({
     },
   },
 });
-const headerContainer = () => {
+const HeaderContainer = (props) => {
   return (
     <Grid
       direction="row"
@@ -39,7 +37,7 @@ const headerContainer = () => {
     >
       <ThemeProvider theme={theme}>
         <Typography variant="name" sx={{ marginLeft: 15 }}>
-          1200 Sqft Apartment For Sale
+          {props.Name}
         </Typography>
         <Grid
           sx={{
@@ -52,12 +50,14 @@ const headerContainer = () => {
         >
           <img
             style={{ height: "40px", width: "40px", color: "black" }}
-            src={LocationIcon}
+            src="/assets/icons/PNG/Location_Icon.png"
           />
-          <Typography variant="location">E-11/,Islamabad</Typography>
+          <Typography variant="location">
+            {props.Area}/,{props.City}
+          </Typography>
         </Grid>
       </ThemeProvider>
     </Grid>
   );
 };
-export default headerContainer;
+export default HeaderContainer;

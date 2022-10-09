@@ -9,13 +9,31 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { makeStyles } from "@mui/styles";
 import { memo } from "react";
-import { useCallback } from "react";
+import { useRef } from "react";
+// import { useCallback } from "react";
 const useStyles = makeStyles({
   gridClass: {
     border: 0,
     boxShadow: "0 15px 25px rgba(0, 0, 0, 0.6)",
   },
 });
+const isValidPassword = (value) => {
+  var passw = /^[A-Za-z]\w{7,14}$/;
+
+  if (value.match(passw)) {
+    return true;
+  }
+  return false;
+};
+// const isValidConfirmPassword = (value) => {
+//   var passw = /^[A-Za-z]\w{7,14}$/;
+//   if (value.match(passw)) {
+//     return true;
+//   } else {
+//     // dispatch(alertSlice.reducer.openAlertBox());
+//     return false;
+//   }
+// };
 const types = [
   { value: "agent", label: "Property Dealer" },
   { value: "agency", label: "Agency" },
@@ -49,29 +67,35 @@ const isValidEmail = (value) => {
 const PriorInfo = (props) => {
   const dispatch = useDispatch();
   const classes = useStyles();
-  const isValidPassword = (value) => {
-    var passw = /^[A-Za-z]\w{7,14}$/;
+  const firstNameRef = useRef();
+  const lastNameRef = useRef();
+  const profileTypeRef = useRef();
+  const emailAddressRef = useRef();
+  const passwordRef = useRef();
+  const passwordConfirmRef = useRef();
+  // const isValidPassword = (value) => {
+  //   var passw = /^[A-Za-z]\w{7,14}$/;
 
-    if (value.match(passw)) {
-      if (value.length === 8) {
-        dispatch(alertActions.openAlertBox("Password Is Valid!"));
-      }
-      return true;
-    } else {
-      if (value.length >= 1 && value.length <= 3) {
-        dispatch(
-          alertActions.openAlertBox(
-            "Password must be! 7 to 15 characters which contain only characters, numeric digits, underscore and first character must be a letter"
-          )
-        );
-      }
-      if (value.length === 8) {
-        dispatch(alertActions.openAlertBox("Password is not Valid!"));
-      }
+  //   if (value.match(passw)) {
+  //     if (value.length === 8) {
+  //       dispatch(alertActions.openAlertBox("Password Is Valid!"));
+  //     }
+  //     return true;
+  //   } else {
+  //     if (value.length >= 1 && value.length <= 3) {
+  //       dispatch(
+  //         alertActions.openAlertBox(
+  //           "Password must be! 7 to 15 characters which contain only characters, numeric digits, underscore and first character must be a letter"
+  //         )
+  //       );
+  //     }
+  //     if (value.length === 8) {
+  //       dispatch(alertActions.openAlertBox("Password is not Valid!"));
+  //     }
 
-      return false;
-    }
-  };
+  //     return false;
+  //   }
+  // };
   const {
     value: firstNameValue,
     isValid: firstNameIsValid,
@@ -113,28 +137,6 @@ const PriorInfo = (props) => {
     reset: resetPassword,
   } = useInput(isValidPassword);
 
-  const isValidConfirmPassword = (value) => {
-    var passw = /^[A-Za-z]\w{7,14}$/;
-    if (value.match(passw) && value.match(passwordValue)) {
-      if (value.length === passwordValue.length) {
-        dispatch(
-          alertActions.openAlertBox("Password and Confirmpassword is same!")
-        );
-      }
-      return true;
-    } else {
-      if (value.length + 1 === passwordValue.length) {
-        dispatch(
-          alertActions.openAlertBox(
-            "Password and Confirmpassword is not same!Password is not Valid!"
-          )
-        );
-      }
-      // dispatch(alertSlice.reducer.openAlertBox());
-      return false;
-    }
-  };
-
   const {
     value: passwordConfirmValue,
     isValid: passwordConfirmIsValid,
@@ -142,7 +144,7 @@ const PriorInfo = (props) => {
     valueChangeHandler: passwordConfirmChangeHandler,
     inputBlurHandler: passwordConfirmBlurHandler,
     reset: resetPasswordConfirm,
-  } = useInput(isValidConfirmPassword);
+  } = useInput(isValidPassword);
   useEffect(() => {
     if (
       firstNameIsValid &&
@@ -176,6 +178,32 @@ const PriorInfo = (props) => {
     props.FormIsSubmitted,
   ]);
   const moreInfoHanlder = () => {
+    if (!firstNameIsValid) {
+      firstNameRef.current.focus();
+      return;
+    } else if (!lastNameIsValid) {
+      lastNameRef.current.focus();
+      return;
+    } else if (!profileTypeIsValid) {
+      profileTypeRef.current.focus();
+      return;
+    } else if (!emailIsValid) {
+      emailAddressRef.current.focus();
+      return;
+    } else if (!passwordIsValid) {
+      passwordRef.current.focus();
+      return;
+    } else if (!passwordConfirmIsValid) {
+      passwordConfirmRef.current.focus();
+      return;
+    }
+    if (!passwordValue.match(passwordConfirmValue)) {
+      passwordConfirmRef.current.focus();
+      dispatch(
+        alertActions.openAlertBox("Password and passwordConfirm are not same!")
+      );
+      return;
+    }
     props.SetMoreInfo();
     props.SetFirstname(firstNameValue);
     props.SetLastname(lastNameValue);
@@ -183,7 +211,39 @@ const PriorInfo = (props) => {
     props.SetEmailAddress(emailValue);
     props.SetPassword(passwordValue);
     props.SetPasswordConfirm(passwordConfirmValue);
+    // firstNameRef.current = firstNameValue;
+    // lastNameRef.current = lastNameValue;
+    // profileTypeRef.current = profileTypeValue;
+    // emailAddressRef.current = emailValue;
+    // passwordRef.current = passwordValue;
+    // passwordConfirmRef.current = passwordConfirmValue;
   };
+  // useEffect(() => {
+  //   if (!props.FormIsSubmitted) {
+  //     if (
+  //       firstNameRef.current &&
+  //       lastNameRef.current &&
+  //       profileTypeRef.current &&
+  //       emailAddressRef.current &&
+  //       passwordRef.current &&
+  //       passwordConfirmRef
+  //     ) {
+  //       firstNameValue = firstNameRef.current;
+  //       lastNameValue = lastNameRef.current;
+  //       profileTypeValue = profileTypeRef.current;
+  //       emailValue = emailAddressRef.current;
+  //       passwordValue = passwordRef.current;
+  //       passwordConfirmValue = passwordConfirmRef.current;
+  //     } else if (props.FormIsSubmitted) {
+  //       firstNameRef.current = "";
+  //       lastNameRef.current = "";
+  //       profileTypeRef.current = "";
+  //       emailAddressRef.current = "";
+  //       passwordRef.current = "";
+  //       passwordConfirmRef.current = "";
+  //     }
+  //   }
+  // }, [props.MoreInfo]);
   return (
     <>
       <Grid
@@ -225,6 +285,7 @@ const PriorInfo = (props) => {
           </Typography>
         </Box>
         <TextField
+          inputRef={firstNameRef}
           error={firstNameHasError ? firstNameHasError : undefined}
           helperText={
             firstNameHasError ? "Please Enter Correct Value" : undefined
@@ -238,6 +299,7 @@ const PriorInfo = (props) => {
           value={firstNameValue}
         />{" "}
         <TextField
+          inputRef={lastNameRef}
           error={lastNameHasError ? lastNameHasError : undefined}
           helperText={
             lastNameHasError ? "Please Enter Correct Value" : undefined
@@ -251,6 +313,7 @@ const PriorInfo = (props) => {
           value={lastNameValue}
         />{" "}
         <TextField
+          inputRef={profileTypeRef}
           error={profileTypeHasError ? profileTypeHasError : undefined}
           helperText={
             profileTypeHasError ? "Please Enter Correct Value" : undefined
@@ -270,6 +333,7 @@ const PriorInfo = (props) => {
           ))}
         </TextField>
         <TextField
+          inputRef={emailAddressRef}
           error={emailHasError ? emailHasError : undefined}
           helperText={emailHasError ? "Please Enter Correct Value" : undefined}
           id="standard-basic"
@@ -281,6 +345,7 @@ const PriorInfo = (props) => {
           value={emailValue}
         />
         <TextField
+          inputRef={passwordRef}
           error={passwordHasError ? passwordHasError : undefined}
           helperText={
             passwordHasError ? "Please Enter Correct Value" : undefined
@@ -293,8 +358,16 @@ const PriorInfo = (props) => {
           onChange={passwordChangeHandler}
           onBlur={passwordBlurHandler}
           value={passwordValue}
+          onClick={() => {
+            dispatch(
+              alertActions.openAlertBox(
+                "Password must be! 7 to 15 characters which contain only characters, numeric digits, underscore and first character must be a letter"
+              )
+            );
+          }}
         />{" "}
         <TextField
+          inputRef={passwordConfirmRef}
           error={passwordConfirmHasError ? passwordConfirmHasError : undefined}
           helperText={
             passwordConfirmHasError ? "Please Enter Correct Value" : undefined
@@ -307,6 +380,13 @@ const PriorInfo = (props) => {
           onChange={passwordConfirmChangeHandler}
           onBlur={passwordConfirmBlurHandler}
           value={passwordConfirmValue}
+          onClick={() => {
+            dispatch(
+              alertActions.openAlertBox(
+                "Password must be! 7 to 15 characters which contain only characters, numeric digits, underscore and first character must be a letter"
+              )
+            );
+          }}
         />{" "}
         <Box
           sx={{
@@ -358,9 +438,9 @@ const PriorInfo = (props) => {
           )}
 
           <Button
-            disabled={!props.FormAIsValid}
+            // disabled={!props.FormAIsValid}
             variant="contained"
-            type="submit"
+            type={props.FormAIsValid ? "submit" : "button"}
             sx={{
               ":hover": {
                 bgcolor: "#FF1C1C", // theme.palette.primary.main
